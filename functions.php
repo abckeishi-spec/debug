@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
 }
 
 // テーマバージョン定数
-define('GI_THEME_VERSION', '6.2.1');
+define('GI_THEME_VERSION', '7.0.0');
 define('GI_THEME_PREFIX', 'gi_');
 
 // 機能ファイルの読み込み
@@ -30,7 +30,7 @@ require_once $inc_dir . '8-initial-setup.php';   // 初期データ投入
  */
 function gi_final_init() {
     if (defined('WP_DEBUG') && WP_DEBUG) {
-        error_log('Grant Insight Theme v6.2.1: Initialization completed successfully');
+        error_log('Grant Insight Theme v7.0.0: Initialization completed successfully');
     }
 }
 add_action('wp_loaded', 'gi_final_init', 999);
