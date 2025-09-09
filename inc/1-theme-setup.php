@@ -119,6 +119,15 @@ function gi_enqueue_scripts() {
     // メインJavaScript
     wp_enqueue_script('gi-main-js', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), GI_THEME_VERSION, true);
     
+    // ブラウザキャッシュ制御
+    add_action('wp_headers', function($headers) {
+        $headers['Cache-Control'] = 'public, max-age=31536000';
+        $headers['X-Content-Type-Options'] = 'nosniff';
+        $headers['X-Frame-Options'] = 'DENY';
+        $headers['X-XSS-Protection'] = '1; mode=block';
+        return $headers;
+    });
+    
     // AJAX設定（強化版）
     wp_localize_script('gi-main-js', 'gi_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),

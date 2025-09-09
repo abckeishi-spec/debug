@@ -7,9 +7,10 @@
 get_header();
 
 // 統計情報の取得
-$tool_count = wp_count_posts('tool')->publish ?: '500+';
-$grant_count = wp_count_posts('grant')->publish ?: '3,000+';
-$case_study_count = wp_count_posts('case_study')->publish ?: '200+';
+// Get cached counts
+$tool_count = gi_get_cached_post_count('tool', 'publish') ?: '500+';
+$grant_count = gi_get_cached_post_count('grant', 'publish') ?: '3,000+';
+$case_study_count = gi_get_cached_post_count('case_study', 'publish') ?: '200+';
 ?>
 
 <!DOCTYPE html>

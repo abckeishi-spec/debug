@@ -1,10 +1,9 @@
 <?php
 /**
  * The header for our theme
- * ヘッダーファイル（CDN重複解消版 - Functions.php v6.2完全対応 - ゴージャス版）
+ * @package Grant_Insight_Perfect
  */
 
-// セキュリティチェック
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -15,17 +14,17 @@ if (!defined('ABSPATH')) {
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- メタ情報 -->
-    <meta name="description" content="<?php 
-        if (is_singular()) {
-            echo esc_attr(gi_safe_excerpt(get_the_excerpt(), 160));
-        } else {
-            echo esc_attr(get_bloginfo('description'));
-        }
-    ?>">
+    <?php
+        $description = is_singular() 
+            ? gi_safe_excerpt(get_the_excerpt(), 160) 
+            : get_bloginfo('description');
+    ?>
+    <meta name="description" content="<?php echo esc_attr($description); ?>">
     
     <!-- Open Graph / Twitter Card -->
     <?php if (is_singular()) : ?>
+        <meta property="og:title" content="<?php echo esc_attr(get_the_title()); ?>">
+        <meta property="og:description" content="<?php echo esc_attr(gi_safe_excerpt(get_the_excerpt(), 160)); ?>">
         <meta property="og:title" content="<?php echo esc_attr(get_the_title()); ?>">
         <meta property="og:description" content="<?php echo esc_attr(gi_safe_excerpt(get_the_excerpt(), 160)); ?>">
         <meta property="og:url" content="<?php echo esc_url(get_permalink()); ?>">
@@ -98,9 +97,9 @@ if (!defined('ABSPATH')) {
     ?>
 
     <!-- メインヘッダー（ゴージャス版） -->
-    <header class="header-main sticky top-0 bg-gradient-to-r from-white via-blue-50/90 to-indigo-50/90 backdrop-blur-xl shadow-xl border-b border-gradient-to-r from-blue-200 to-purple-200 z-header animate-fade-in-down" role="banner">
-        <!-- 装飾的な背景パターン -->
-        <div class="absolute inset-0 opacity-5">
+    <header class="header-main sticky top-0 bg-gradient-to-r from-white via-blue-50/90 to-indigo-50/90 backdrop-blur-xl shadow-xl border-b border-gradient-to-r from-blue-200 to-purple-200 z-header animate-fade-in-down" role="banner" aria-label="Main header">
+        <!-- Decorative background pattern -->
+        <div class="absolute inset-0 opacity-5" aria-hidden="true">
             <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/10"></div>
             <div class="absolute top-2 left-10 w-32 h-32 bg-gradient-to-br from-yellow-400/20 to-orange-400/20 rounded-full blur-3xl animate-pulse"></div>
             <div class="absolute bottom-2 right-10 w-24 h-24 bg-gradient-to-br from-indigo-400/20 to-purple-400/20 rounded-full blur-2xl animate-pulse" style="animation-delay: 1s;"></div>
@@ -155,14 +154,20 @@ if (!defined('ABSPATH')) {
             <nav class="desktop-nav hidden lg:flex items-center space-x-1 animate-fade-in-up" 
                  style="animation-delay: 0.2s;" 
                  role="navigation" 
-                 aria-label="メインナビゲーション">
+                 aria-label="メインナビゲーション"
+                 aria-expanded="false">
                 <?php
                 if (has_nav_menu('primary')) {
                     wp_nav_menu([
                         'theme_location' => 'primary',
                         'container'      => false,
-                        'items_wrap'     => '<ul id="menu-primary-navigation" class="flex items-center space-x-1">%3$s</ul>',
+                        'items_wrap'     => '<ul id="menu-primary-navigation" class="flex items-center space-x-1" role="menubar" aria-label="メインナビゲーション">%3$s</ul>',
                         'depth'          => 2,
+                        'link_before'    => '<span role="menuitem" tabindex="0">',
+                        'link_after'     => '</span>',
+                        'fallback_cb'    => false,
+                    ]);
+                } else { ?>
                         'walker'         => class_exists('Custom_Nav_Walker') ? new Custom_Nav_Walker() : null,
                     ]);
                 } else {
@@ -256,8 +261,12 @@ if (!defined('ABSPATH')) {
                         class="menu-button p-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 transform hover:scale-110 active:scale-95 z-mobile-menu"
                         aria-label="メニューを開く"
                         aria-expanded="false"
-                        aria-controls="mobile-menu">
+                        aria-controls="mobile-menu"
+                        role="button"
+                        tabindex="0"
+                        type="button">
                     <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+                    <span class="sr-only">メニューを開く</span>
                 </button>
             </div>
         </div>
@@ -288,8 +297,12 @@ if (!defined('ABSPATH')) {
             </div>
             <button id="mobile-menu-close-button" 
                     class="close-button p-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 transform hover:scale-110 active:scale-95"
-                    aria-label="メニューを閉じる">
+                    aria-label="メニューを閉じる"
+                    type="button"
+                    tabindex="0"
+                    role="button">
                 <i class="fas fa-times text-xl" aria-hidden="true"></i>
+                <span class="sr-only">メニューを閉じる</span>
             </button>
         </div>
 

@@ -4,26 +4,44 @@
  * @package Grant_Insight_Perfect
  */
 
-// セキュリティチェック
+// Security check
 if (!defined('ABSPATH')) {
     exit;
 }
 
-// テーマバージョン定数
+// Theme constants
 define('GI_THEME_VERSION', '7.0.0');
 define('GI_THEME_PREFIX', 'gi_');
 
-// 機能ファイルの読み込み
+/**
+ * Cached post count
+ */
+if (!function_exists('gi_get_cached_post_count')) {
+    function gi_get_cached_post_count($post_type = 'post', $status = 'publish') {
+        $cache_key = 'gi_post_count_' . $post_type . '_' . $status;
+        $count = get_transient($cache_key);
+        
+        if ($count === false) {
+            $posts = wp_count_posts($post_type);
+            $count = isset($posts->$status) ? $posts->$status : 0;
+            set_transient($cache_key, $count, HOUR_IN_SECONDS);
+        }
+        
+        return $count;
+    }
+}
+
+// Load feature files
 $inc_dir = get_template_directory() . '/inc/';
 
-require_once $inc_dir . '1-theme-setup.php';     // テーマ基本設定、スクリプト
-require_once $inc_dir . '2-post-types.php';      // 投稿タイプ、タクソノミー
-require_once $inc_dir . '3-ajax-functions.php';  // AJAX関連
-require_once $inc_dir . '4-helper-functions.php';// ヘルパー関数
-require_once $inc_dir . '5-template-tags.php';   // テンプレート用関数
-require_once $inc_dir . '6-admin-functions.php'; // 管理画面関連
-require_once $inc_dir . '7-acf-setup.php';       // ACF関連
-require_once $inc_dir . '8-initial-setup.php';   // 初期データ投入
+require_once $inc_dir . '1-theme-setup.php';     // Theme setup and scripts
+require_once $inc_dir . '2-post-types.php';      // Post types and taxonomies
+require_once $inc_dir . '3-ajax-functions.php';  // AJAX functions
+require_once $inc_dir . '4-helper-functions.php';// Helper functions
+require_once $inc_dir . '5-template-tags.php';   // Template tags
+require_once $inc_dir . '6-admin-functions.php'; // Admin functions
+require_once $inc_dir . '7-acf-setup.php';       // ACF setup
+require_once $inc_dir . '8-initial-setup.php';   // Initial setup
 
 /**
  * テーマ設定取得関数（一元管理）
@@ -57,10 +75,19 @@ function gi_final_init() {
 add_action('wp_loaded', 'gi_final_init', 999);
 
 /**
- * クリーンアップ処理
+ * Cleanup transients when switching themes
  */
 function gi_theme_cleanup() {
+    global $wpdb;
+    
+    // Delete all theme transients
+    $sql = "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s";
+    $wpdb->query($wpdb->prepare($sql, '_transient_gi_%', '_transient_timeout_gi_%'));
+    
+    // Delete theme options
     delete_option('gi_login_attempts');
+    
+    // Clear cache
     wp_cache_flush();
 }
 add_action('switch_theme', 'gi_theme_cleanup');
