@@ -1,0 +1,351 @@
+/*!
+Theme Name: Grant Insight Theme
+Description: 蜉ｩ謌宣≡繝ｻ陬懷勧驥第ュ蝣ｱ縺ｨ險ｺ譁ｭ繝��繝ｫ繧呈署萓帙☆繧妓ordPress繝��繝槭�AI險ｺ譁ｭ讖溯�縲√♀豌励↓蜈･繧頑ｩ溯�縲�ｫ伜ｺｦ縺ｪ讀懃ｴ｢讖溯�繧呈政霈峨�
+Author: 荳ｭ貔､蝨ｭ蠢�
+Version: 7.0.0
+Requires at least: 6.0
+Tested up to: 6.4
+Requires PHP: 8.0
+License: GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: grant-insight
+Domain Path: /languages
+Tags: business, government, grants, tools, ai-diagnosis, responsive, accessibility-ready
+
+Grant Insight Theme, Copyright 2024 荳ｭ貔､蝨ｭ蠢�
+Grant Insight Theme is distributed under the terms of the GNU GPL
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+*/
+
+/* ===================================
+   繝��繝槫渕譛ｬ險ｭ螳�
+=================================== */
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+/* ===================================
+   WordPress Core Styles
+=================================== */
+
+/* Accessibility */
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+
+.screen-reader-text:focus {
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto !important;
+    color: #21759b;
+    display: block;
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+}
+
+/* WordPress Alignment Classes */
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+/* WordPress Gallery */
+.wp-caption {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    max-width: 96%;
+    padding: 5px 3px 10px;
+    text-align: center;
+}
+
+.wp-caption.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+    border: 0 none;
+    height: auto;
+    margin: 0;
+    max-width: 98.5%;
+    padding: 0;
+    width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
+}
+
+/* ===================================
+   繝ｬ繧ｹ繝昴Φ繧ｷ繝也判蜒�
+=================================== */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ===================================
+   繧ｫ繧ｹ繧ｿ繝�繝励Ο繝代ユ繧｣��CSS螟画焚��
+=================================== */
+:root {
+    /* 繧ｫ繝ｩ繝ｼ繝代Ξ繝�ヨ */
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --secondary-color: #64748b;
+    --accent-color: #f59e0b;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --text-light: #9ca3af;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-gray: #f1f5f9;
+    --border-color: #e5e7eb;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    
+    /* 繝輔か繝ｳ繝医し繧､繧ｺ */
+    --font-xs: 0.75rem;
+    --font-sm: 0.875rem;
+    --font-base: 1rem;
+    --font-lg: 1.125rem;
+    --font-xl: 1.25rem;
+    --font-2xl: 1.5rem;
+    --font-3xl: 1.875rem;
+    --font-4xl: 2.25rem;
+    
+    /* 繧ｹ繝壹�繧ｷ繝ｳ繧ｰ */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    
+    /* 繝悶Ξ繧､繧ｯ繝昴う繝ｳ繝茨ｼ医Γ繝�ぅ繧｢繧ｯ繧ｨ繝ｪ縺ｧ菴ｿ逕ｨ�� */
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+}
+
+/* ===================================
+   繝ｦ繝ｼ繝�ぅ繝ｪ繝�ぅ繧ｯ繝ｩ繧ｹ
+=================================== */
+
+/* 繝�く繧ｹ繝磯�鄂ｮ */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* 陦ｨ遉ｺ/髱櫁｡ｨ遉ｺ */
+.hidden { display: none; }
+.block { display: block; }
+.inline-block { display: inline-block; }
+.flex { display: flex; }
+.grid { display: grid; }
+
+/* 繝輔Ξ繝�け繧ｹ繝懊ャ繧ｯ繧ｹ */
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.items-center { align-items: center; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+
+/* 繝槭�繧ｸ繝ｳ繝ｻ繝代ョ繧｣繝ｳ繧ｰ */
+.m-0 { margin: 0; }
+.mt-4 { margin-top: var(--space-4); }
+.mb-4 { margin-bottom: var(--space-4); }
+.p-4 { padding: var(--space-4); }
+.px-4 { padding-left: var(--space-4); padding-right: var(--space-4); }
+.py-4 { padding-top: var(--space-4); padding-bottom: var(--space-4); }
+
+/* ===================================
+   繧ｳ繝ｳ繝昴�繝阪Φ繝医せ繧ｿ繧､繝ｫ
+=================================== */
+
+/* 繝懊ち繝ｳ蝓ｺ譛ｬ繧ｹ繧ｿ繧､繝ｫ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-size: var(--font-base);
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    color: white;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--bg-gray);
+    color: var(--text-primary);
+}
+
+/* 繧ｫ繝ｼ繝� */
+.card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* ===================================
+   繝ｬ繧ｹ繝昴Φ繧ｷ繝冶ｨｭ險�
+=================================== */
+
+/* 繧ｿ繝悶Ξ繝�ヨ */
+@media (min-width: 768px) {
+    .md\:block { display: block; }
+    .md\:hidden { display: none; }
+    .md\:flex { display: flex; }
+    .md\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .md\:text-lg { font-size: var(--font-lg); }
+}
+
+/* 繝�せ繧ｯ繝医ャ繝� */
+@media (min-width: 1024px) {
+    .lg\:block { display: block; }
+    .lg\:hidden { display: none; }
+    .lg\:flex { display: flex; }
+    .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .lg\:text-xl { font-size: var(--font-xl); }
+}
+
+/* ===================================
+   蜊ｰ蛻ｷ繧ｹ繧ｿ繧､繝ｫ
+=================================== */
+@media print {
+    * {
+        background: transparent !important;
+        color: black !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    
+    a, a:visited {
+        text-decoration: underline;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+}
+
+/* ===================================
+   繧｢繧ｯ繧ｻ繧ｷ繝薙Μ繝�ぅ
+=================================== */
+
+/* 繝輔か繝ｼ繧ｫ繧ｹ陦ｨ遉ｺ */
+*:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* 蜍輔″繧呈ｸ帙ｉ縺呵ｨｭ螳壹↓蟇ｾ蠢� */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* 繝繝ｼ繧ｯ繝｢繝ｼ繝牙ｯｾ蠢懈ｺ門ｙ */
+@media (prefers-color-scheme: dark) {
+    /* 蟆�擂逧�↓繝繝ｼ繧ｯ繝｢繝ｼ繝牙ｯｾ蠢懊☆繧矩圀縺ｮ貅門ｙ */
+}
