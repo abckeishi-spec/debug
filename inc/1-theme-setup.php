@@ -72,6 +72,36 @@ function gi_content_width() {
 add_action('after_setup_theme', 'gi_content_width', 0);
 
 /**
+ * Tailwind CSS設定を取得
+ */
+function gi_get_tailwind_config() {
+    return '
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: {
+                        50: "#ecfdf5",
+                        100: "#d1fae5",
+                        200: "#a7f3d0",
+                        300: "#6ee7b7",
+                        400: "#34d399",
+                        500: "#10b981",
+                        600: "#059669",
+                        700: "#047857",
+                        800: "#065f46",
+                        900: "#064e3b"
+                    }
+                },
+                fontFamily: {
+                    sans: ["Noto Sans JP", "system-ui", "sans-serif"]
+                }
+            }
+        }
+    }';
+}
+
+/**
  * スクリプト・スタイルの読み込み（完全一元管理 - 重複排除版）
  */
 function gi_enqueue_scripts() {
