@@ -4,29 +4,9 @@
  * フッターファイル（ゴージャス版 - ロゴ統合・AIアシスタント対応）
  */
 
-// 必要なヘルパー関数を定義
-if (!function_exists('gi_get_sns_urls')) {
-    function gi_get_sns_urls() {
-        return [
-            'twitter' => get_theme_mod('sns_twitter_url', ''),
-            'facebook' => get_theme_mod('sns_facebook_url', ''),
-            'linkedin' => get_theme_mod('sns_linkedin_url', ''),
-            'instagram' => get_theme_mod('sns_instagram_url', ''),
-            'youtube' => get_theme_mod('sns_youtube_url', '')
-        ];
-    }
-}
+get_footer(); ?>
 
-if (!function_exists('gi_get_option')) {
-    function gi_get_option($option_name, $default = '') {
-        return get_theme_mod($option_name, $default);
-    }
-}
-?>
-
-<!-- Tailwind CSS Play CDNの読み込み（ページのhead部分に配置） -->
-<?php if (!wp_script_is('tailwind-cdn', 'enqueued')): ?>
-<script src="https://cdn.tailwindcss.com"></script>
+<!-- フッター -->
 <script>
     tailwind.config = {
         theme: {

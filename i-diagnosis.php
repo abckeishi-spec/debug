@@ -9,7 +9,6 @@ get_header();
 
 <!-- Tailwind CSS Play CDNの読み込み（ページのhead部分に配置） -->
 <?php if (!wp_script_is('tailwind-cdn', 'enqueued')): ?>
-<script src="https://cdn.tailwindcss.com"></script>
 <script>
     tailwind.config = {
         theme: {

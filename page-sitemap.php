@@ -13,7 +13,6 @@ get_header(); ?>
     <title><?php wp_title('|', true, 'right'); ?></title>
     
     <!-- Tailwind CSS Play CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {

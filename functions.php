@@ -26,6 +26,27 @@ require_once $inc_dir . '7-acf-setup.php';       // ACF関連
 require_once $inc_dir . '8-initial-setup.php';   // 初期データ投入
 
 /**
+ * テーマ設定取得関数（一元管理）
+ */
+if (!function_exists('gi_get_option')) {
+    function gi_get_option($option_name, $default = '') {
+        return get_theme_mod($option_name, $default);
+    }
+}
+
+if (!function_exists('gi_get_sns_urls')) {
+    function gi_get_sns_urls() {
+        return [
+            'twitter' => get_theme_mod('sns_twitter_url', ''),
+            'facebook' => get_theme_mod('sns_facebook_url', ''),
+            'linkedin' => get_theme_mod('sns_linkedin_url', ''),
+            'instagram' => get_theme_mod('sns_instagram_url', ''),
+            'youtube' => get_theme_mod('sns_youtube_url', '')
+        ];
+    }
+}
+
+/**
  * テーマの最終初期化
  */
 function gi_final_init() {

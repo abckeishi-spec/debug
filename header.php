@@ -9,12 +9,6 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// 必要なヘルパー関数を定義
-if (!function_exists('gi_get_option')) {
-    function gi_get_option($option_name, $default = '') {
-        return get_theme_mod($option_name, $default);
-    }
-}
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="scroll-smooth">
 <head>
@@ -45,17 +39,6 @@ if (!function_exists('gi_get_option')) {
     <?php endif; ?>
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="<?php echo esc_attr(get_bloginfo('name')); ?>">
-    
-    <!-- プリロード（パフォーマンス最適化） -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
-    <!-- DNS Prefetch -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
-    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     
     <?php wp_head(); ?>
     

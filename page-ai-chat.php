@@ -6,7 +6,6 @@
     <title>AIチャットボット - WordPress PHP テンプレート</title>
     
     <!-- Tailwind CSS Play CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {

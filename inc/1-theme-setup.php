@@ -88,11 +88,30 @@ function gi_enqueue_scripts() {
     // Tailwindをenqueue
     wp_enqueue_script('tailwind-cdn');
     
+    // プリロード設定（パフォーマンス最適化）
+    add_action('wp_head', function() {
+        echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
+        echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+        echo '<link rel="preconnect" href="https://cdn.tailwindcss.com">' . "\n";
+        echo '<link rel="preconnect" href="https://cdnjs.cloudflare.com">' . "\n";
+        echo '<link rel="dns-prefetch" href="//fonts.googleapis.com">' . "\n";
+        echo '<link rel="dns-prefetch" href="//cdn.tailwindcss.com">' . "\n";
+        echo '<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">' . "\n";
+    }, 1);
+    
     // Font Awesome CDN（一元管理）
     wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', array(), '6.4.0');
     
     // Google Fonts
     wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap', array(), null);
+    
+    // セキュリティヘッダーを追加
+    add_action('wp_head', function() {
+        echo '<meta http-equiv="X-Content-Type-Options" content="nosniff">' . "\n";
+        echo '<meta http-equiv="X-Frame-Options" content="DENY">' . "\n";
+        echo '<meta http-equiv="X-XSS-Protection" content="1; mode=block">' . "\n";
+        echo '<meta name="referrer" content="strict-origin-when-cross-origin">' . "\n";
+    }, 1);
     
     // テーマスタイル
     wp_enqueue_style('gi-style', get_stylesheet_uri(), array(), GI_THEME_VERSION);
